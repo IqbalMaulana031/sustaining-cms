@@ -2,7 +2,16 @@ export default [
   'strapi::logger',
   'strapi::errors',
   'strapi::security',
-  'strapi::cors',
+  {
+    name: 'strapi::cors',
+    config: {
+      enabled: true,
+      headers: '*',
+      origin: ['http://82.112.227.180:3000', 'http://82.112.227.180:1337'], // Specify your frontend domains here
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      maxAge: 86400, // Max age in seconds
+    },
+  },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
@@ -10,12 +19,3 @@ export default [
   'strapi::favicon',
   'strapi::public',
 ];
-
-module.exports = {
-  settings: {
-    cors: {
-      enabled: true,
-      origin: ['*'], // Adjust this list as needed
-    },
-  },
-};
